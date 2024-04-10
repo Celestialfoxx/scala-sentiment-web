@@ -1,5 +1,6 @@
 @import "~antd/dist/antd.css";
 @import "./styles/TopBar.css";
+@import "./styles/Home.css";
 
 body {
   margin: 0;

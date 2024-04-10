@@ -1,0 +1,18 @@
+.airline-container {
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .airline-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .airline-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  

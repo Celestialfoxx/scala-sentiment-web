@@ -1,0 +1,14 @@
+.home {
+  width: 1100px;
+  margin: 0 auto;
+}
+.header {
+    font-size: 2rem; /* 标题字体大小 */
+    margin-bottom: 15px; /* 标题和副标题之间的间距 */
+  }
+  
+.intro {
+    font-size: 1.5rem; /* 副标题字体大小 */
+    color: #555; /* 副标题字体颜色 */
+    max-width: 600px; /* 最大宽度，使长文本更易读 */
+  }

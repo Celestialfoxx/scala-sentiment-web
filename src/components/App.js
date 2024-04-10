@@ -1,10 +1,12 @@
 import Chart from './Chart';
+import Home from './Home';
+import TopBar from './TopBar';
 
 function App() {
   return (
     <div className="App">
-      <h1>Chart from CSV</h1>
-      <Chart />
+      <TopBar />
+      <Home />
     </div>
   );
 }

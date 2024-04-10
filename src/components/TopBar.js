@@ -7,8 +7,8 @@ function TopBar(props) {
   return (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <span className="App-title">Sentiment Trend</span>
-      {<LogoutOutlined className="logout" onClick={handleLogout} />}
+      <span className="App-title">Sentiment Analysis</span>
+      {<LogoutOutlined className="logout" />}
     </header>
   );
 }

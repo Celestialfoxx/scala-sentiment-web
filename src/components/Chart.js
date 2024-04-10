@@ -32,7 +32,7 @@ const Chart = (props) => {
 
   return (
     <div>
-      <CSVReader onFileLoaded={handleData} />
+      {/* <CSVReader onFileLoaded={handleData} /> */}
       {data && <Bar data={data} />}
     </div>
   );
