@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Tabs, message, Row, Col, Button } from "antd";
 import axios from "axios";
-import { SEARCH_TOPIC, BASE_URL } from "../constants";
+import { SEARCH_KEY, BASE_URL } from "../constants";
 
 function Home(props) {
   const [activeTab, setActiveTab] = useState("airline");
@@ -12,9 +12,9 @@ function Home(props) {
     let url = "";
 
     if (type === SEARCH_KEY.all) {
-        url = `${BASE_URL}/search`;
+        url = `${BASE_URL}/home`;
       } else if (type === SEARCH_KEY.airline) {
-        url = `${BASE_URL}/search?topic=${type}`;
+        url = `${BASE_URL}/`;
       } else {
         url = `${BASE_URL}/search?keywords=${keyword}`;
       }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import CSVReader from 'react-csv-reader';
 
-const ChartFromCSV = () => {
+const Chart = (props) => {
   const [data, setData] = useState(null);
 
   const handleData = (csvData) => {
@@ -38,4 +38,4 @@ const ChartFromCSV = () => {
   );
 };
 
-export default ChartFromCSV;
+export default Chart;
