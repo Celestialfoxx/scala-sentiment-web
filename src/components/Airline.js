@@ -200,14 +200,7 @@ const Airline = () => {
     responsive: true,
   };
 
-  const comment = `Based on the provided sentiment analysis data of tweets related to American airlines, it appears that the general sentiment is negative. The average sentiment values are consistently below zero throughout the hours, indicating a predominance of negative feedback or perceptions. The computed average sentiment values also reinforce this trend, as they too are in the negative range. 
-
-  \nThe data shows minor fluctuations in sentiment over different hours, which might be associated with specific events or time-related service experiences. However, the consistently negative values across the board suggest an overall dissatisfaction among the users or customers discussing these airlines on Twitter.
-
-  \nLooking forward, if the current trends continue without significant improvements or positive interventions by the airlines, the negative sentiment is likely to persist. However, should the airlines address the underlying issues causing this dissatisfaction, we could expect to see an upward shift in sentiment. Monitoring these trends and implementing timely and effective responses could be crucial for improving public perception.
-
-  \nPredicting future changes precisely requires more in-depth analysis, possibly incorporating more data points over an extended period and considering external factors such as industry developments, service changes, or global events. Nonetheless, the current data underscores the importance of proactive customer service and public relations efforts to improve sentiment and perception in the social media sphere.`;
-
+  
   return (
     <div className="airline-container">
       <h1>Airline Performance Analysis</h1>
@@ -262,7 +255,7 @@ const Airline = () => {
 
       <div className="comment">
         <p>
-          nLooking forward, if the current trends continue without significant
+          Looking forward, if the current trends continue without significant
           improvements or positive interventions by the airlines, the negative
           sentiment is likely to persist. However, should the airlines address
           the underlying issues causing this dissatisfaction, we could expect to
