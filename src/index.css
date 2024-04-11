@@ -1,6 +1,7 @@
 @import "~antd/dist/antd.css";
 @import "./styles/TopBar.css";
 @import "./styles/Home.css";
+@import "./styles/Airline.css";
 
 body {
   margin: 0;

@@ -1,18 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap');
+
 .airline-container {
-    text-align: center;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .airline-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .airline-container h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.airline-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.airline-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 60%;
+  background-color: #f3f3f3;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table th {
+  background-color: #4caf50;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+.comment{
+  margin-top: 50px;
+  text-align: left;
+  white-space: pre-line;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px; 
+  line-height: 1.6; 
+}
