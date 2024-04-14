@@ -30,6 +30,8 @@ const Airline = () => {
   const [sentimentData, setSentimentData] = useState({ datasets: [] });
   const [varianceData, setVarianceData] = useState({ datasets: [] });
   const [overviewData, setOverviewData] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+  const [addData, setAddData] = useState('');
 
   useEffect(() => {
     const url = `${BASE_URL}/airline`;
@@ -200,10 +202,60 @@ const Airline = () => {
     responsive: true,
   };
 
-  
+  // when there is some change with addData, will call the backend to analyze the sentiment 
+  useEffect(() => {
+    if (addData) {
+      console.log("Submitted data:", addData);
+      
+      let url = `${BASE_URL}/oneSentiment`;
+
+      axios.get(url,{
+        params: {
+          data: addData
+        }
+      })
+      .then(response => {
+        console.log("Received response:", response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error); 
+      })
+      .finally(()=>{
+        
+      })
+    }
+  }, [addData]);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  // submit add one sentiment to backend
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setAddData(inputValue);
+  };
+
   return (
     <div className="airline-container">
       <h1>Airline Performance Analysis</h1>
+      <h2>add mock data</h2>
+      {!addData && (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            style={{ marginRight: '10px' }}
+          />
+          <button onClick={handleSubmit}>Submit and analyze</button>
+        </div>
+      )}
+      {addData && (
+        <div>
+          <p>Data submitted: {addData}, please wait to proceed</p>
+        </div>
+      )}
       <h2>Overview</h2>
       {overviewData && (
         <table>
