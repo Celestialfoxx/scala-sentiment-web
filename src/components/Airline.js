@@ -40,6 +40,7 @@ const Airline = () => {
       .get(url)
       .then((response) => {
         const data = response.data;
+        console.log(data);
 
         if (Array.isArray(data) && data.length > 0) {
           // Separate the first row as overview data
@@ -208,23 +209,22 @@ const Airline = () => {
       console.log("Submitted data:", addData);
       
       let url = `${BASE_URL}/oneSentiment`;
-
-      axios.get(url,{
+  
+      axios.get(url, {
         params: {
-          data: addData
+          data: addData  // 将 `addData` 作为查询参数发送
         }
       })
       .then(response => {
         console.log("Received response:", response.data);
       })
       .catch(error => {
-        console.error("Error fetching data:", error); 
-      })
-      .finally(()=>{
-        
-      })
+        console.error("Error fetching data:", error);
+      });
+      
     }
   }, [addData]);
+  
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
