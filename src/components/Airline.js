@@ -57,7 +57,7 @@ const Airline = () => {
           // Separate the first row as overview data
           const [firstRow, ...restOfData] = data;
           const extractedData = data.map((item) => ({
-            hour: item.hour ?? "Summary", // Handle summary case with no hour
+            hour: item.date + item.hour,
             average_sentiment: item.average_sentiment,
           }));
           setSentimentList(extractedData);
