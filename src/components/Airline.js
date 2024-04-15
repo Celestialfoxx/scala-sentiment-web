@@ -35,6 +35,15 @@ const Airline = () => {
   const [addData, setAddData] = useState("");
   const [process, setProcess] = useState(false);
   const [analysisResult, setAnalysisResult] = useState("");
+  const [openAiData, setOpenAiData] = useState("")
+  const [sentimentList, setSentimentList] = useState([]);
+
+
+  useEffect(() => {
+    if (openAiData) {
+        console.log('OpenAI Data has changed:', openAiData);
+    }
+}, [openAiData]);
 
   useEffect(() => {
     const url = `${BASE_URL}/airline`;
@@ -48,7 +57,16 @@ const Airline = () => {
         if (Array.isArray(data) && data.length > 0) {
           // Separate the first row as overview data
           const [firstRow, ...restOfData] = data;
-          console.log(fetchText(data))
+          const extractedData = data.map(item => ({
+            hour: item.hour ?? 'Summary', // Handle summary case with no hour
+            average_sentiment: item.average_sentiment
+        }));
+        setSentimentList(extractedData);
+        // Convert extractedData to string and call fetchText
+        (async () => {
+            const response = await fetchText(JSON.stringify(extractedData));
+            setOpenAiData(response);
+        })();
 
 
           setOverviewData(firstRow);
