@@ -13,6 +13,7 @@ import {
   Legend,
 } from "chart.js";
 import { BASE_URL } from "../constants";
+import fetchText from "./OpenAi";
 
 ChartJS.register(
   CategoryScale,
@@ -47,6 +48,9 @@ const Airline = () => {
         if (Array.isArray(data) && data.length > 0) {
           // Separate the first row as overview data
           const [firstRow, ...restOfData] = data;
+          console.log(fetchText(data))
+
+
           setOverviewData(firstRow);
 
           const hours = restOfData.map((item) => item.hour ?? "Unknown");
