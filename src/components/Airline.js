@@ -30,8 +30,10 @@ const Airline = () => {
   const [sentimentData, setSentimentData] = useState({ datasets: [] });
   const [varianceData, setVarianceData] = useState({ datasets: [] });
   const [overviewData, setOverviewData] = useState(null);
-  const [inputValue, setInputValue] = useState('');
-  const [addData, setAddData] = useState('');
+  const [inputValue, setInputValue] = useState("");
+  const [addData, setAddData] = useState("");
+  const [process, setProcess] = useState(false);
+  const [analysisResult, setAnalysisResult] = useState("");
 
   useEffect(() => {
     const url = `${BASE_URL}/airline`;
@@ -203,28 +205,47 @@ const Airline = () => {
     responsive: true,
   };
 
-  // when there is some change with addData, will call the backend to analyze the sentiment 
+  // when there is some change with addData, will call the backend to analyze the sentiment
   useEffect(() => {
     if (addData) {
       console.log("Submitted data:", addData);
-      
+
       let url = `${BASE_URL}/oneSentiment`;
-  
-      axios.get(url, {
-        params: {
-          data: addData  // 将 `addData` 作为查询参数发送
-        }
-      })
-      .then(response => {
-        console.log("Received response:", response.data);
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-      });
-      
+
+      axios
+        .get(url, {
+          params: { data: addData },
+        })
+        .then((response) => {
+          console.log("Received response:", response.data);
+          const sentiment = interpretSentiment(response.data);
+          setAnalysisResult(
+            `${addData} - The sentiment of this text is ${sentiment}.`
+          );
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          setAnalysisResult("Failed to fetch sentiment analysis.");
+        })
+        .finally(() => {
+          setProcess(false);
+        });
     }
   }, [addData]);
-  
+
+  // respond the sentiment analysis based on return value
+  const interpretSentiment = (value) => {
+    switch (value) {
+      case -1:
+        return "negative";
+      case 0:
+        return "neutral";
+      case 1:
+        return "positive";
+      default:
+        return "unknown"; // In case of unexpected result
+    }
+  };
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -233,29 +254,41 @@ const Airline = () => {
   // submit add one sentiment to backend
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!inputValue.trim()) {
+      alert("Please enter some text before submitting.");
+      return;
+    }
+    setProcess(true);
     setAddData(inputValue);
   };
-
   return (
     <div className="airline-container">
       <h1>Airline Performance Analysis</h1>
-      <h2>add mock data</h2>
-      {!addData && (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <input
-            type="text"
+      <div>
+        <h2>Add Mock Data</h2>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <textarea
             value={inputValue}
             onChange={handleInputChange}
-            style={{ marginRight: '10px' }}
+            style={{ marginRight: "10px", width: "300px", height: "40px" }} 
+            rows="4"
+            wrap="soft" 
           />
           <button onClick={handleSubmit}>Submit and analyze</button>
         </div>
-      )}
-      {addData && (
-        <div>
-          <p>Data submitted: {addData}, please wait to proceed</p>
-        </div>
-      )}
+        {process && <h2>Please wait, analyzing the data...</h2>}
+        {!process && analysisResult && (
+          <div>
+            <h2>{analysisResult}</h2>
+          </div>
+        )}
+      </div>
       <h2>Overview</h2>
       {overviewData && (
         <table>
