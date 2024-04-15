@@ -15,6 +15,9 @@
     "react-csv-reader": "^4.0.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^4.3.1",
+    "cors": "^2.8.5",
+    "langchain": "^0.0.135",
+    "multer": "^1.4.5-lts.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
