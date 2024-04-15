@@ -35,15 +35,14 @@ const Airline = () => {
   const [addData, setAddData] = useState("");
   const [process, setProcess] = useState(false);
   const [analysisResult, setAnalysisResult] = useState("");
-  const [openAiData, setOpenAiData] = useState("")
+  const [openAiData, setOpenAiData] = useState("");
   const [sentimentList, setSentimentList] = useState([]);
-
 
   useEffect(() => {
     if (openAiData) {
-        console.log('OpenAI Data has changed:', openAiData);
+      console.log("OpenAI Data has changed:", openAiData);
     }
-}, [openAiData]);
+  }, [openAiData]);
 
   useEffect(() => {
     const url = `${BASE_URL}/airline`;
@@ -57,17 +56,16 @@ const Airline = () => {
         if (Array.isArray(data) && data.length > 0) {
           // Separate the first row as overview data
           const [firstRow, ...restOfData] = data;
-          const extractedData = data.map(item => ({
-            hour: item.hour ?? 'Summary', // Handle summary case with no hour
-            average_sentiment: item.average_sentiment
-        }));
-        setSentimentList(extractedData);
-        // Convert extractedData to string and call fetchText
-        (async () => {
+          const extractedData = data.map((item) => ({
+            hour: item.hour ?? "Summary", // Handle summary case with no hour
+            average_sentiment: item.average_sentiment,
+          }));
+          setSentimentList(extractedData);
+          // Convert extractedData to string and call fetchText
+          (async () => {
             const response = await fetchText(JSON.stringify(extractedData));
             setOpenAiData(response);
-        })();
-
+          })();
 
           setOverviewData(firstRow);
 
@@ -298,9 +296,9 @@ const Airline = () => {
           <textarea
             value={inputValue}
             onChange={handleInputChange}
-            style={{ marginRight: "10px", width: "300px", height: "40px" }} 
+            style={{ marginRight: "10px", width: "300px", height: "40px" }}
             rows="4"
-            wrap="soft" 
+            wrap="soft"
           />
           <button onClick={handleSubmit}>Submit and analyze</button>
         </div>
@@ -381,6 +379,19 @@ const Airline = () => {
       </div>
       <div style={{ marginTop: "50px" }}>
         <Line data={varianceData} options={lineOptions} />
+      </div>
+      <div className="comments">
+        <p class="AiTitle">What does ChatGPT say?</p>
+        <p
+          style={{
+            fontSize: "20px",
+            textAlign: "left",
+            wordWrap: "break-word",
+            whiteSpace: "pre-wrap",
+          }}
+        >
+          {openAiData}
+        </p>
       </div>
     </div>
   );
